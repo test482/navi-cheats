@@ -1,0 +1,10 @@
+% yt-dlp
+
+# List available formats of video
+yt-dlp --list-formats <URL>
+
+# Download playlist with index number filename
+yt-dlp --yes-playlist --output "%(playlist_index)02d-%(title)s.%(ext)s" --embed-thumbnail --embed-metadata <URL>
+
+# Download audio only & convert to mp3
+yt-dlp --format "bestaudio/best" -x --audio-quality 0 --audio-format mp3 --paths "$HOME/Music/" --embed-thumbnail --embed-metadata <URL>
