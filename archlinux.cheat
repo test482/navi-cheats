@@ -38,3 +38,8 @@ $ user_group_name: cat /etc/group | cut -d: -f1
 # Take screenshot on tty
 sudo ffmpeg -f kmsgrab -device /dev/dri/card1 -i - -vf 'hwmap=derive_device=vaapi,hwdownload,format=bgr0' -frames 1 a.png
 
+% shell
+
+# Compressing bash history file
+tac "$HISTFILE" | awk '!seen[$0]++' | tac > "$HISTFILE.compressed"
+
