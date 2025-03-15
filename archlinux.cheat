@@ -1,24 +1,24 @@
 % pacman
 
 # List of the files installed by a package
-pacman -Ql <installed_package>
+pacman --query --list <installed_package>
 
 # Find modified files from a package in local filesystem
-pacman -Qkk <installed_package>
+pacman --query -kk <installed_package>
 
 # Removing unused packages (orphans)
-sudo pacman -Rns $(pacman -Qtdq)
+sudo pacman --remove --nosave --recursive $(pacman --query --unrequired --deps --quiet)
 
 # Mark a package as explicit installed
-sudo pacman -D --asexplicit <installed_package>
+sudo pacman --database --asexplicit <installed_package>
 
 # Mark a package as dependency installed
-sudo pacman -D --asdeps <installed_package>
+sudo pacman --database --asdeps <installed_package>
 
 # Reinit pacman keys
 sudo rm -rf /etc/pacman.d/gnupg/*; sudo killall gpg-agent; sudo pacman-key --init; sudo pacman-key --populate;
 
-$ installed_package: pacman -Qq --- --fzf-overrides "--preview 'pacman -Qil {}'"
+$ installed_package: pacman --query --quiet --- --fzf-overrides "--preview 'pacman --query --info --list {}'"
 
 % desktop
 
