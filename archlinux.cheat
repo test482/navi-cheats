@@ -41,5 +41,5 @@ sudo ffmpeg -f kmsgrab -device /dev/dri/card1 -i - -vf 'hwmap=derive_device=vaap
 % shell
 
 # Compressing bash history file
-history -w; temp_file=$(mktemp); tac "$HISTFILE" | awk '!seen[$0]++' | tac > "$temp_file" && mv "$temp_file" "$HISTFILE"; history -r
+history -a; temp_file=$(mktemp); tac "$HISTFILE" | awk '!seen[$0]++' | tac > "$temp_file" && mv "$temp_file" "$HISTFILE"; history -r
 
