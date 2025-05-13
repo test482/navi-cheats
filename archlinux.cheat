@@ -18,6 +18,9 @@ sudo pacman --database --asdeps <installed_package>
 # Reinit pacman keys
 sudo rm -rf /etc/pacman.d/gnupg/*; sudo killall gpg-agent; sudo pacman-key --init; sudo pacman-key --populate;
 
+# Reinstall last time packages
+sudo pacman -U $(ls -ct /var/cache/pacman/pkg/* | head -<pkgs_num> | grep -v "sig$") --overwrite "*"
+
 $ installed_package: pacman --query --quiet --- --fzf-overrides "--preview 'pacman --query --info --list {}'"
 
 % desktop
