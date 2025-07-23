@@ -6,5 +6,8 @@ yt-dlp --list-formats <URL>
 # Download playlist with index number filename
 yt-dlp --yes-playlist --output "%(playlist_index)02d-%(title)s.%(ext)s" --embed-metadata <URL>
 
+# Download all videos uploaded in date range
+yt-dlp --yes-playlist --output "%(upload_date>%Y%m%d)s-%(title)s.%(ext)s" --embed-metadata --dateafter <dateStart> --datebefore <dateEnd> <URL>
+
 # Download audio only & convert to mp3
 yt-dlp --format "bestaudio/best" -x --audio-quality 0 --audio-format mp3 --paths "$HOME/Music/" --embed-thumbnail --embed-metadata <URL>
