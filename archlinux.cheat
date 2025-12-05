@@ -37,6 +37,9 @@ xprop WM_CLASS
 # Open KDE debug console
 qdbus6 org.kde.KWin /KWin org.kde.KWin.showDebugConsole
 
+# Toggle touchpad by qdbus command
+qdbus org.kde.touchpad /modules/kded_touchpad org.kde.touchpad.toggle
+
 $ user_group_name: cat /etc/group | cut -d: -f1
 
 % tty
