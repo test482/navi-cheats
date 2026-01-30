@@ -37,18 +37,19 @@ xprop WM_CLASS
 # Open KDE debug console
 qdbus6 org.kde.KWin /KWin org.kde.KWin.showDebugConsole
 
-# Toggle touchpad by qdbus command
-qdbus org.kde.touchpad /modules/kded_touchpad org.kde.touchpad.toggle
-
 $ user_group_name: cat /etc/group | cut -d: -f1
 
-% tty
+% shell
 
 # Take screenshot on tty
 sudo ffmpeg -f kmsgrab -device /dev/dri/card1 -i - -vf 'hwmap=derive_device=vaapi,hwdownload,format=bgr0' -frames 1 a.png
 
-% shell
-
 # Compressing bash history file
 history -a; temp_file=$(mktemp); tac "$HISTFILE" | awk '!seen[$0]++' | tac > "$temp_file" && mv "$temp_file" "$HISTFILE"; history -r
+
+# Toggle touchpad by qdbus command
+qdbus org.kde.touchpad /modules/kded_touchpad org.kde.touchpad.toggle
+
+# Show which process sending packets
+ss -tanp | awk -F'[",=]' '/users:\(\(/ {cnt[$2 ":" $6]++} END{for(i in cnt) print cnt[i], i}' | sort -nr
 
